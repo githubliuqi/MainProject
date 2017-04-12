@@ -1,0 +1,11 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    
+    <!-- common : 通用颜色 -->
+    <color name="black">#000000</color> <!-- black -->
+    <color name="white">#FFFFFF</color>
+    <!-- APP : Reader -->
+    
+
+</resources>

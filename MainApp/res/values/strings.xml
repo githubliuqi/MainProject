@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Reader</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_main_activity1">MainActivity1</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_read">ReadActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+   
+    <!-- APP : Reader -->
+    
+    <!--  reader activity -->
+    <string name="reader_bookshelf">书架</string>
+    <string name="reader_last_unit">上一章</string>
+    <string name="reader_next_unit">下一章</string>
+    <string name="reader_menu_chapterlist">目录</string>
+    <string name="reader_menu_download">缓存</string>
+    <string name="reader_menu_light_mode">夜间</string>
+    <string name="reader_menu_settings">设置</string>
+</resources>

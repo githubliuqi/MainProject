@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_last_unit"
+            style="@style/Reader_Bottom_Button"
+            android:text="@string/reader_last_unit"
+            >
+        </Button>
+        <SeekBar 
+            android:id="@+id/reader_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+         <Button
+            android:id="@+id/btn_next_unit"
+            style="@style/Reader_Bottom_Button"
+            android:text="@string/reader_next_unit"
+            >
+        </Button>
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal" 
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        >
+        <Button 
+            android:id="@+id/menu_btn_chapterlist"
+            style="@style/Reader_Bottom_Button_Menu"
+            android:text="@string/reader_menu_chapterlist"
+            />
+         <Button 
+            android:id="@+id/menu_btn_download"
+            style="@style/Reader_Bottom_Button_Menu"
+            android:text="@string/reader_menu_download"
+            />
+          <Button 
+            android:id="@+id/menu_btn_light_mode"
+            style="@style/Reader_Bottom_Button_Menu"
+            android:text="@string/reader_menu_light_mode"
+            />
+           <Button 
+            android:id="@+id/menu_btn_settings"
+            style="@style/Reader_Bottom_Button_Menu"
+            android:text="@string/reader_menu_settings"
+            />
+    </LinearLayout>
+    
+
+</LinearLayout>

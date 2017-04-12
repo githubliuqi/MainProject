@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/reader_novel_nav_conent_skin_bg_parchment"
+    
+     >
+    <TextView 
+         android:id="@+id/page_title"
+         android:layout_width="match_parent"
+         android:layout_height="0dp" 
+         android:text="title - 第一章"
+         android:layout_weight="1"
+         android:gravity="center"
+          android:textColor="#000000"
+        />
+     <TextView 
+         android:id="@+id/page_content"
+         android:layout_width="match_parent"
+         android:layout_height="0dp" 
+         android:gravity="center"
+         android:text="content - 内容"
+         android:textColor="#000000"
+          android:layout_weight="8"
+         
+        />
+    <TextView 
+         android:id="@+id/page_bottom"
+         android:layout_width="match_parent"
+         android:layout_height="0dp" 
+         android:text="第一章"
+         android:layout_weight="1"
+          android:textColor="#000000"
+         android:gravity="center"
+        />
+
+</LinearLayout>
