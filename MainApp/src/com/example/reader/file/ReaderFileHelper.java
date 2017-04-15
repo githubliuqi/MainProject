@@ -1,6 +1,8 @@
 package com.example.reader.file;
 
-public class ReaderFileHelper {
+import com.example.main.file.BaseFileHelper;
+
+public class ReaderFileHelper extends BaseFileHelper{
 
 	
 	
