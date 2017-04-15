@@ -4,10 +4,16 @@ import com.example.main.utils.MainConfig;
 import com.example.reader.util.ReaderConfig;
 
 import com.example.main.R;
+import com.example.main.dialog.BaseDialog;
+import com.example.main.dialog.LQProgressDialog;
+
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,11 +30,14 @@ public class BaseActivity extends Activity {
 
 	protected Context mContext;
 	protected View mContentView;
+	private Dialog mProgressDialog;
+	protected Handler mUIHandler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		mContext = this;
+		mUIHandler = new Handler();
 		if (fullScreen()) {
 			// 无title
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -112,6 +121,52 @@ public class BaseActivity extends Activity {
 		return animation;
 	}
 	
+	
+	protected void showProgress() {
+
+	/*	mUIHandler.post(() -> {
+			if (null == mProgressDialog) {
+				mProgressDialog = new LQProgressDialog(mContext);
+			}
+			if (!mProgressDialog.isShowing()) {
+				mProgressDialog.show();
+			}
+		});*/
+
+		mUIHandler.post(new Runnable() {
+
+			@Override
+			public void run() {
+				if (null == mProgressDialog) {
+					mProgressDialog = new LQProgressDialog(mContext);
+				}
+				if (!mProgressDialog.isShowing()) {
+					mProgressDialog.show();
+				}
+			}
+		});
+	}
+	
+	protected void closeProgress()
+	{
+		
+		mUIHandler.post(new Runnable() {
+			
+			@Override
+			public void run() {
+				if (null != mProgressDialog)
+				{
+					mProgressDialog.dismiss();
+				}
+			}
+		});
+		/*mUIHandler.post(()->{
+			if (null != mProgressDialog)
+			{
+				mProgressDialog.dismiss();
+			}
+		});*/
+	}
 	
 }
 

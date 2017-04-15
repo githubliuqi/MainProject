@@ -1,18 +1,20 @@
-package com.example.main.activity;
+package com.example.main.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.view.View;
 
-public class BaseDialog extends Dialog {
+public  class BaseDialog extends Dialog {
 
+	protected Context mContext;
 	public BaseDialog(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
+		mContext = context;
 	}
 	
 	public BaseDialog(Context context, int style) {
 		super(context,style);
-		// TODO Auto-generated constructor stub
+		mContext = context;
 	}
 	
 	

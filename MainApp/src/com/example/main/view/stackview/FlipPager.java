@@ -3,6 +3,7 @@ package com.example.main.view.stackview;
 import com.example.main.view.MainToast;
 import com.example.reader.util.ReaderConfig;
 
+import android.R.color;
 import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -43,14 +44,14 @@ public class FlipPager extends FrameLayout implements OnTouchListener, Animation
 	private void init()
 	{  // 设置全屏
 	   setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-	   //setBackgroundColor(Color.RED);
+	   setBackgroundColor(color.white);
 	   // 设置滑动手势
 	   mGestureDetector = new GestureDetector(mContext,new LQSimpleOnGestureListener(this));
 	   setLongClickable(true); // 滑动手势判断需要设置
 	   setOnTouchListener(this);// 手势事件是在触摸事件中调用的
 	   //setPageType(ReaderConfig.PAGE_TYPE_TOP_AND_BOTTOM);
-	   ViewParent vp = getParent();
-	   if (null != vp)vp.requestDisallowInterceptTouchEvent(true);
+//	   ViewParent vp = getParent();
+//	   if (null != vp)vp.requestDisallowInterceptTouchEvent(true);
 	}
 	
 	public void setAdpater(BaseAdapter adapter)

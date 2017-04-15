@@ -1,23 +1,30 @@
 package com.example.reader.activity;
 
+import java.io.File;
+
 import com.example.main.R;
 import com.example.main.activity.BaseActivity;
 import com.example.main.utils.DisplayUtils;
 import com.example.main.view.MainToast;
 import com.example.main.view.stackview.FlipPager;
 import com.example.main.view.stackview.SuspendedView;
+import com.example.reader.file.NovelData;
+import com.example.reader.file.NovelFileParser;
+import com.example.reader.file.ReaderDataProvider;
+import com.example.reader.util.ReaderConfig;
 import com.example.reader.view.ReaderSuspendedViewAdapter;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -28,6 +35,8 @@ public class ReadActivity2 extends BaseActivity implements OnClickListener{
 	
 	private PopupWindow mTopWindow;
 	private PopupWindow mBottomWindow;
+	private FlipPager mFlipPager;
+	private ReaderSuspendedViewAdapter mAdaptar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -37,6 +46,62 @@ public class ReadActivity2 extends BaseActivity implements OnClickListener{
 		setContentView(view);
 		//view.setOnClickListener(this);
 		//view.setLongClickable(true);
+		
+		init();
+	}
+	
+	private void init()
+	{
+		final NovelFileParser parser = new NovelFileParser();
+		File rootSD = Environment.getExternalStorageDirectory() ;// 获取手机外部SD卡（手机自带，不是用户插入的SD卡）
+		final File file = new File(rootSD, "Document/明朝那些事儿(书本网).txt");
+		//showProgress();
+		
+		AsyncTask<File, Integer , ReaderDataProvider> task = new AsyncTask<File, Integer, ReaderDataProvider>()
+		{
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+				showProgress();
+			}
+			@Override
+			protected ReaderDataProvider doInBackground(File... params) {
+				NovelData novelData = parser.parse(file);
+				ReaderDataProvider dataProvider = new ReaderDataProvider();
+				dataProvider.bind(novelData);
+				dataProvider.update(ReaderConfig.PAGE_TEXT_SIZE, 400, ReaderConfig.PAGE_LINE_COUNT, ReaderConfig.PAGE_LINE_SPACE);
+				return dataProvider;
+			}
+			
+			@Override
+			protected void onPostExecute(ReaderDataProvider dataProvider) {
+				// TODO Auto-generated method stub
+				super.onPostExecute(dataProvider);
+				mAdaptar.setDataProvider(dataProvider);
+				//mAdaptar.notifyDataSetChanged();
+				mFlipPager.setAdpater(mAdaptar);
+				closeProgress();
+			}
+			
+		};
+		task.execute(file);
+		
+//		new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				NovelData novelData = parser.parse(file);
+//				ReaderDataProvider dataProvider = new ReaderDataProvider();
+//				dataProvider.bind(novelData);
+//				dataProvider.update(ReaderConfig.PAGE_TEXT_SIZE, 400, ReaderConfig.PAGE_LINE_COUNT, ReaderConfig.PAGE_LINE_SPACE);
+//				mAdaptar.setDataProvider(dataProvider);
+//				//mAdaptar.notifyDataSetChanged();
+//				mFlipPager.setAdpater(mAdaptar);
+//				closeProgress();
+//				
+//			}
+//		}).start();
 	}
 
 	private View getView2()
@@ -49,7 +114,7 @@ public class ReadActivity2 extends BaseActivity implements OnClickListener{
 	{
 		LinearLayout ll = new LinearLayout(this);
 		
-		FlipPager flipPager = new FlipPager(this)
+		mFlipPager = new FlipPager(this)
 		{
 			@Override
 			protected void onSingleTapUp() {
@@ -77,11 +142,11 @@ public class ReadActivity2 extends BaseActivity implements OnClickListener{
 			}
 		};
 		
-		ReaderSuspendedViewAdapter adapter = new ReaderSuspendedViewAdapter(this);
+		mAdaptar = new ReaderSuspendedViewAdapter(this);
 		
-		flipPager.setAdpater(adapter);
+		mFlipPager.setAdpater(mAdaptar);
 		
-		ll.addView(flipPager);
+		ll.addView(mFlipPager);
 		
 		return ll;
 	}

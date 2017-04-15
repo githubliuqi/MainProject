@@ -78,7 +78,7 @@ public class MainFragment extends BaseFragment {
 			
 			TextView view = new TextView(mContext);
 			//view.setBackground(DrawableHelper.getRoundCornerDrawable(10, 1, Color.TRANSPARENT	, Color.GRAY));
-			int size = DisplayUtils.dip2xp(mContext, 400) ;
+			int size = DisplayUtils.dip2xp(mContext, 100) ;
 			view.setWidth(size);
 			view.setHeight(size);
 			view.setGravity(Gravity.CENTER);
@@ -93,7 +93,7 @@ public class MainFragment extends BaseFragment {
 			view.setBackgroundColor(Color.GREEN);
 			//view.setBackground(drawable);
 			//view.setScaleY(1.0F*size/drawable.getIntrinsicHeight());
-			return view2;
+			return view;
 		}
 		
 	}

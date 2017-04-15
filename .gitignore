@@ -1,2 +1,5 @@
 /KProgressHUD/
 /appcompat_v7/
+bin/
+gen/
+
