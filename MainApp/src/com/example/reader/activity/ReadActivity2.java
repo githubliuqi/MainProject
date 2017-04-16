@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.example.main.R;
 import com.example.main.activity.BaseActivity;
+import com.example.main.application.SkinStyle;
 import com.example.main.utils.DisplayUtils;
 import com.example.main.view.MainToast;
 import com.example.main.view.stackview.FlipPager;
@@ -260,6 +261,15 @@ public class ReadActivity2 extends BaseActivity implements OnClickListener{
 		return view;
 	}
 	
+	@Override
+	public void onSkinChanged(SkinStyle style) {
+		// TODO Auto-generated method stub
+		super.onSkinChanged(style);
+		if (SkinStyle.SKIN_STYLE_BLACK == style) // 夜间模式
+		{
+			
+		}
+	}
 	
 
 }

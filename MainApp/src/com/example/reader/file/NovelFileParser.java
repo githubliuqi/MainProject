@@ -28,9 +28,10 @@ public class NovelFileParser {
 		
 		InputStreamReader isReader = null;
 		BufferedReader reader = null;
+		String encode = ReaderFileHelper.getEncode(file);
 		try {
 			// FileInputStream fis = new FileInputStream(file);
-			isReader = new InputStreamReader(new FileInputStream(file), "GBK");
+			isReader = new InputStreamReader(new FileInputStream(file), encode);
 			reader = new BufferedReader(isReader);
 			String line = null;
 			int lineCount = 0;
@@ -47,14 +48,14 @@ public class NovelFileParser {
 						chaptars.add(chaptar);
 						
 						Chaptar chaptar2 = new Chaptar();
-						chaptar2.mTitle = line;
+						chaptar2.mTitle = ReaderFileHelper.getString(line.trim(), encode);
 						chaptars.add(chaptar2);
 					}else
 					{
 						Chaptar lastChaptar = chaptars.get(chaptars.size()-1);
 						lastChaptar.mText = sb.toString();
 						Chaptar chaptar = new Chaptar();
-						chaptar.mTitle = line;
+						chaptar.mTitle = ReaderFileHelper.getString(line.trim(), encode);
 						chaptar.mLineNumber = lineCount;
 						chaptars.add(chaptar);
 					}

@@ -1,23 +1,19 @@
 package com.example.main.activity;
 
-import com.example.main.utils.MainConfig;
-import com.example.reader.util.ReaderConfig;
-
 import com.example.main.R;
-import com.example.main.dialog.BaseDialog;
+import com.example.main.application.AppSkinChangeListener;
+import com.example.main.application.LQApplication;
+import com.example.main.application.SkinStyle;
 import com.example.main.dialog.LQProgressDialog;
+import com.example.main.utils.MainConfig;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
@@ -26,7 +22,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.PopupWindow;
 
-public class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity implements AppSkinChangeListener{
 
 	protected Context mContext;
 	protected View mContentView;
@@ -46,6 +42,16 @@ public class BaseActivity extends Activity {
 					WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			// 此两段代码必须设置在setContentView()方法之前
 		}
+		
+		if (supportSkinchaned())
+		{
+		   getLQApplication().addAppSkinChangeListener(this);
+		}
+	}
+	
+	public LQApplication getLQApplication()
+	{
+		return (LQApplication)getApplication();
 	}
 	
 	@Override
@@ -53,6 +59,23 @@ public class BaseActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.setContentView(view);
 		mContentView = view;
+	}
+	
+	public boolean supportSkinchaned()
+	{
+		return true;
+	}
+	
+	@Override
+	public void onSkinChanged(SkinStyle style) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void onSupportSkinChanged(boolean support) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	@Override

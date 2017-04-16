@@ -81,8 +81,9 @@ public class ReaderSuspendedViewAdapter extends BaseAdapter {
 	class FlipPagerView extends LinearLayout
 	{
 
-		public TextView mTitleView;
-		public TextView mTextView;
+		public TextView mTitleView; // 章 标题
+		public TextView mTextView;  // 内容
+		public TextView mPageNumber; // 页码
 		public FlipPagerView(Context context) {
 			super(context);
 			init();
@@ -96,17 +97,31 @@ public class ReaderSuspendedViewAdapter extends BaseAdapter {
 			setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			int padding = DisplayUtils.dip2xp(mContext, 10);
 			setPadding(padding, padding, padding, padding);
+			
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 0);
+			
 			mTitleView = new TextView(mContext);
 			mTitleView.setText("章标题");
 			mTitleView.setTextColor(ReaderConfig.PAGE_CHARPATR_TEXT_COLOR);
 			mTitleView.setTextSize(ReaderConfig.PAGE_CHAPTAR_TEXT_SIZE);
 			mTitleView.setGravity(Gravity.CENTER);
+			//mTitleView.setBackgroundColor(Color.RED);
+			params.weight = 1;
 			addView(mTitleView);
 			mTextView = new TextView(mContext);
 			mTextView.setTextColor(ReaderConfig.PAGE_TEXT_COLOR);
 			mTextView.setTextSize(ReaderConfig.PAGE_TEXT_SIZE);
 			mTextView.setLineSpacing(DisplayUtils.dip2xp(mContext, ReaderConfig.PAGE_LINE_SPACE), 1);
-		    addView(mTextView);
+			params.weight = 8;
+			addView(mTextView, params);
+		    
+		    mPageNumber = new TextView(mContext);
+		    mPageNumber.setText("页码");
+		    mPageNumber.setTextSize(12);
+		    mPageNumber.setTextColor(Color.GRAY);
+		    mPageNumber.setGravity(Gravity.CENTER_VERTICAL|Gravity.RIGHT);
+		    params.weight = 1;
+		    addView(mPageNumber);
 		}
 		
 //		public void setData(DataWraper data)
@@ -118,6 +133,7 @@ public class ReaderSuspendedViewAdapter extends BaseAdapter {
 		{
 			mTitleView.setText(pageData.mChaptar);
 			mTextView.setText(pageData.mText);
+			mPageNumber.setText(pageData.mIndexAtChaptar+1+"/"+pageData.mPageCountOfChapatar);
 		}
 	}
 	

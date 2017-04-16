@@ -166,6 +166,8 @@ public class FlipPager extends FrameLayout implements OnTouchListener, Animation
 		animation.start();
 	}
 	
+	
+	
 	/**
 	 * 显示指定页
 	 * @param index

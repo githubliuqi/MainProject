@@ -26,4 +26,6 @@ public class ReaderFileHelper extends BaseFileHelper{
 		return isChaptar;
 	}
 	
+	
+	
 }

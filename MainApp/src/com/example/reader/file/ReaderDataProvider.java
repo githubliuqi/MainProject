@@ -47,6 +47,7 @@ public class ReaderDataProvider {
 		    	mDatas.addAll(datas);
 		    }
 		}
+		ReaderPageData.mPageCountOfNovel = pageCount; // 小说总页数
 	}
 	
 	private ArrayList<ReaderPageData> translateChaptar(Chaptar chaptar, int pageCount)
@@ -89,7 +90,10 @@ public class ReaderDataProvider {
 			pageText.mIndexAtNovel = pageCount + pageText.mIndexAtChaptar;
 			pageCount++;
 		}
-		
+		for (ReaderPageData data : datas)
+		{
+			data.mPageCountOfChapatar = datas.size();
+		}
 		return datas;
 	}
 	
